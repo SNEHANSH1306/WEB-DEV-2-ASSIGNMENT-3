@@ -1,0 +1,479 @@
+/* ===========================
+   CSS Variables — Light Theme (default)
+   =========================== */
+:root {
+  --bg: #f5f4f0;
+  --surface: #ffffff;
+  --surface2: #f0ede8;
+  --border: #e0dbd3;
+  --accent: #7c3aed;
+  --accent-light: rgba(124, 58, 237, 0.1);
+  --green: #2a7a4f;
+  --green-bg: #e8f5ee;
+  --red: #c0392b;
+  --red-bg: #fdecea;
+  --text: #1a1814;
+  --text-muted: #7a7268;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+}
+
+/* ===========================
+   Dark Theme — applied when <body> has class "dark"
+   =========================== */
+body.dark {
+  --bg: #0f0f13;
+  --surface: #1a1a24;
+  --surface2: #22222f;
+  --border: #2e2e3e;
+  --accent: #a855f7;
+  --accent-light: rgba(168, 85, 247, 0.15);
+  --green: #3dd68c;
+  --green-bg: rgba(61, 214, 140, 0.1);
+  --red: #ff6b6b;
+  --red-bg: rgba(255, 107, 107, 0.1);
+  --text: #eeeaf4;
+  --text-muted: #7a7a9a;
+  --shadow: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* ===========================
+   Reset & Base
+   =========================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  /* smooth transition when switching themes */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===========================
+   Layout
+   =========================== */
+.app-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* ===========================
+   Top bar — header row with theme toggle
+   =========================== */
+.top-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  animation: fadeDown 0.5s ease both;
+}
+
+/* ===========================
+   Theme Toggle Button
+   =========================== */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+/* The sun/moon icon inside the button */
+.theme-toggle .toggle-icon {
+  font-size: 16px;
+  line-height: 1;
+  transition: transform 0.4s ease;
+}
+
+.theme-toggle:hover .toggle-icon {
+  transform: rotate(20deg);
+}
+
+/* ===========================
+   Header
+   =========================== */
+.header {
+  flex: 1;
+}
+
+.header-badge {
+  display: inline-block;
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1.5px solid rgba(124,58,237,0.2);
+  padding: 3px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.header h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+
+.header h1 span { color: var(--accent); }
+
+.header p {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+/* ===========================
+   Stats Bar
+   =========================== */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+  animation: fadeUp 0.5s 0.05s ease both;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.stat-card .stat-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-card .stat-number.green  { color: var(--green); }
+.stat-card .stat-number.red    { color: var(--red); }
+.stat-card .stat-number.accent { color: var(--accent); }
+
+.stat-card .stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+
+/* ===========================
+   Add Student Form
+   =========================== */
+.form-section {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 28px 24px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 28px;
+  animation: fadeUp 0.5s 0.1s ease both;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.form-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--accent);
+  border-radius: 4px 0 0 4px;
+}
+
+.form-section h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 130px auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.form-input {
+  padding: 10px 14px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
+  outline: none;
+  width: 100%;
+}
+
+.form-input::placeholder { color: var(--text-muted); }
+
+.form-input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+}
+
+.btn-add {
+  padding: 10px 24px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.btn-add:hover  { background: #6d28d9; transform: translateY(-1px); }
+.btn-add:active { transform: translateY(0); }
+
+.form-error {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--red-bg);
+  border: 1px solid rgba(192,57,43,0.2);
+  border-radius: var(--radius-sm);
+  color: var(--red);
+  font-size: 13px;
+}
+
+/* ===========================
+   Student Table
+   =========================== */
+.table-container {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  animation: fadeUp 0.5s 0.15s ease both;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container thead {
+  background: var(--surface2);
+  border-bottom: 1.5px solid var(--border);
+  transition: background 0.3s;
+}
+
+.table-container thead th {
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.table-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text);
+  animation: fadeUp 0.5s 0.13s ease both;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 56px 20px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.empty-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* ===========================
+   Student Row
+   =========================== */
+.student-row {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+  animation: rowSlideIn 0.35s ease both;
+}
+
+.student-row:last-child { border-bottom: none; }
+.student-row:hover { background: var(--surface2); }
+
+.student-row td {
+  padding: 13px 20px;
+  vertical-align: middle;
+}
+
+.student-num {
+  width: 30px; height: 30px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  color: var(--text-muted);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.student-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.score-input {
+  width: 76px;
+  padding: 6px 10px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
+  outline: none;
+}
+
+.score-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.status-badge.pass {
+  background: var(--green-bg);
+  color: var(--green);
+  border: 1.5px solid rgba(42,122,79,0.25);
+}
+
+.status-badge.fail {
+  background: var(--red-bg);
+  color: var(--red);
+  border: 1.5px solid rgba(192,57,43,0.25);
+}
+
+.btn-delete {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background: var(--red-bg);
+  border-color: rgba(192,57,43,0.3);
+  color: var(--red);
+}
+
+/* ===========================
+   Animations
+   =========================== */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rowSlideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 620px) {
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .form-grid { grid-template-columns: 1fr; }
+  .top-bar   { flex-direction: column; gap: 16px; }
+
+  .table-container thead th:first-child,
+  .student-row td:first-child { display: none; }
+}
